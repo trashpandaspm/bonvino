@@ -10,7 +10,6 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        controladorPrincipal = new ControladorGenerarReporte(this);
         this.controladorPrincipal = new ControladorGenerarReporte(this);
         
     }
