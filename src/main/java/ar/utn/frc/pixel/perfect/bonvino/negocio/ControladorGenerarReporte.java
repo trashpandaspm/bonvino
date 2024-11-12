@@ -2,6 +2,8 @@ package ar.utn.frc.pixel.perfect.bonvino.negocio;
 
 import ar.utn.frc.pixel.perfect.bonvino.interfaz.InterfazExcel;
 import ar.utn.frc.pixel.perfect.bonvino.interfaz.Principal;
+import ar.utn.frc.pixel.perfect.bonvino.repositorios.implementaciones.VinoRepositoryImpl;
+import ar.utn.frc.pixel.perfect.bonvino.repositorios.interfaces.VinoRepository;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,12 +21,17 @@ public class ControladorGenerarReporte {
     private LocalDate fechaDesde;
     private LocalDate fechaHasta;
     private TreeMap<Float, List<Vino>> vinosConPuntaje;
+    private VinoRepository vinoRepository;
 
     
     public ControladorGenerarReporte(Principal principal) {
 
+        this.filtros = new ArrayList<>();
+        this.vinos = new ArrayList<>();
         this.principal = principal;
         this.vinosConPuntaje = new TreeMap<>(Collections.reverseOrder());
+        this.vinoRepository = new VinoRepositoryImpl();
+        cargarVinosDesdeBaseDatos();
     }
     
     public void buscarYCalcularPuntajeDeVinos(LocalDate fechaDesde, LocalDate fechaHasta){
@@ -49,6 +56,8 @@ public class ControladorGenerarReporte {
 
     public void tomarFechas(String fechaDesde, String fechaHasta) {
         setFechaDesde(fechaDesde);
+        setFechaHasta(fechaHasta);
+        buscarYCalcularPuntajeDeVinos(this.fechaDesde, this.fechaHasta);
     }
 
     public void setFechaDesde(String fechaDesde) {
@@ -74,5 +83,14 @@ public class ControladorGenerarReporte {
                 break;
             }}
         interfazExcel.exportarExcel(top10Vinos, puntajesPromedio);
+    }
+
+    public void setFechaHasta(String fechaHasta) {
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.fechaHasta = LocalDate.parse(fechaHasta, formateador);
+    }
+
+    private void cargarVinosDesdeBaseDatos() {
+        this.vinos = vinoRepository.findAll();
     }
 }

@@ -47,13 +47,15 @@ public class IteradorVinos implements Iterador{
         String nombre = vinoActual.getNombre();
         float precio = vinoActual.getPrecio();
         List<String> infoBodega = vinoActual.buscarInfoBodega();
-        String varietal = vinoActual.buscarVarietal();
+        List<String> varietales = vinoActual.buscarVarietal();
         List<String> info = null;
         info.add(nombre);
         info.add(String.valueOf(precio));
         info.add(infoBodega.get(0));
         info.add(infoBodega.get(1));
-        info.add(varietal);
+        for (String v : varietales){
+            info.add(v);
+        }
         return info;
     }
 }
