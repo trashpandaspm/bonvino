@@ -13,3 +13,10 @@
 /home/abril/NetBeansProjects/BonVino/src/main/java/ar/utn/frc/pixel/perfect/bonvino/negocio/Resenia.java
 /home/abril/NetBeansProjects/BonVino/src/main/java/ar/utn/frc/pixel/perfect/bonvino/negocio/Varietal.java
 /home/abril/NetBeansProjects/BonVino/src/main/java/ar/utn/frc/pixel/perfect/bonvino/negocio/Vino.java
+/home/abril/NetBeansProjects/BonVino/src/main/java/ar/utn/frc/pixel/perfect/bonvino/repositorios/contexto/DbContext.java
+/home/abril/NetBeansProjects/BonVino/src/main/java/ar/utn/frc/pixel/perfect/bonvino/repositorios/implementaciones/ReflectionUtil.java
+/home/abril/NetBeansProjects/BonVino/src/main/java/ar/utn/frc/pixel/perfect/bonvino/repositorios/implementaciones/RepositoryImpl.java
+/home/abril/NetBeansProjects/BonVino/src/main/java/ar/utn/frc/pixel/perfect/bonvino/repositorios/implementaciones/VinoRepositoryImpl.java
+/home/abril/NetBeansProjects/BonVino/src/main/java/ar/utn/frc/pixel/perfect/bonvino/repositorios/interfaces/BodegaRepository.java
+/home/abril/NetBeansProjects/BonVino/src/main/java/ar/utn/frc/pixel/perfect/bonvino/repositorios/interfaces/Repository.java
+/home/abril/NetBeansProjects/BonVino/src/main/java/ar/utn/frc/pixel/perfect/bonvino/repositorios/interfaces/VinoRepository.java

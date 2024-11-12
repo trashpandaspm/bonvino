@@ -1,20 +1,48 @@
 package ar.utn.frc.pixel.perfect.bonvino.negocio;
 
+import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-
+@Entity
 public class Vino {
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @SequenceGenerator(name="sqlite_sequence", sequenceName="Vino")
+    private int codigoVino;
+    
+    @OneToMany(mappedBy = "vino")
     private List<Resenia> resenias;
     private List<Object> filtros;
+    @ManyToMany
+    @JoinTable(
+            name="VinoXVarietal",
+            joinColumns=@JoinColumn(name="codigoVino"),
+            inverseJoinColumns=@JoinColumn(name="codigoVarietal")
+    )
+    private List<Varietal> varietales;
+    
     private float promedio;
     private int puntaje;
     private int contador;
+    
+    @Column(nullable=false)
     private String nombre;
+    
+    @Column(nullable=false)
     private float precio;
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="bodega", referencedColumnName="idBodega")
     private Bodega bodega;
-    private Varietal varietal;
+    
+    @Column(name="añada", nullable=false)
     private int anada;
+    
+    @Column(name="imagen", nullable=false)
     private String imagenEtiqueta;
+    
+    @Column(nullable=false)
     private String notaDeCataBodega;
     
     public float tomarPuntajeReseniaEnPeriodo(List<Object> filtros) {
@@ -62,8 +90,12 @@ public class Vino {
         info.add(regionPais.get(1));
         return info;
     }
-    public String buscarVarietal(){
-        return varietal.getDescripcion();
+    public List<String> buscarVarietal(){
+        List<String> descripciones = new ArrayList<>();
+        for(Varietal varietal : varietales) {
+            descripciones.add(varietal.getDescripcion());
+        }
+        return descripciones;
     }
 
     public int getAnada() {
