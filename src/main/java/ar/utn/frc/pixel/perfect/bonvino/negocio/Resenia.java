@@ -43,7 +43,7 @@ public class Resenia {
     @Column(nullable=false)
     private String comentario;
     @Column(nullable=false)
-    private boolean esPremium;
+    private int esPremium;
     @Column(nullable=false)
     private int puntaje;
     
@@ -52,10 +52,12 @@ public class Resenia {
     }
 
     public boolean esPremium() {
-        return esPremium;
-    }
+        if(esPremium == 1){
+        return true;}else{
+            return false;}
+        }
     public int getPuntaje(){
         return puntaje;
     }
-    
 }
+

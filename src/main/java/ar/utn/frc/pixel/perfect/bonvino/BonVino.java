@@ -1,13 +1,19 @@
 package ar.utn.frc.pixel.perfect.bonvino;
 
 import ar.utn.frc.pixel.perfect.bonvino.interfaz.Principal;
-import ar.utn.frc.pixel.perfect.bonvino.repositorios.contexto.DbContext;
 
 
 public class BonVino {
     public static void main(String[] args){
-        DbContext db = db.getInstance();
-        Principal principal = new Principal();
-        principal.setVisible(true);
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Principal principal = new Principal();
+                
+                principal.setVisible(true);
+                
+                principal.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+            }
+        });
     }
 }
