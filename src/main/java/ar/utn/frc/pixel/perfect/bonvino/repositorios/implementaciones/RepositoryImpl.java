@@ -60,6 +60,7 @@ public abstract class RepositoryImpl<T, K> implements Repository<T, K> {
             Query query = this.manager.createQuery(jpql);
             return query.getResultList();
         }catch (HibernateException ex) {
+            System.out.println("llegue hasta aca");
             throw new RuntimeException(ex);
         }
     }
